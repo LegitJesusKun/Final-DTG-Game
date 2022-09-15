@@ -1,28 +1,47 @@
 
 using UnityEngine;
-
-public class Gun : MonoBehaviour {
+using System.Collections;
+public class Gun : MonoBehaviour
+{
 
     public float damage = 10f;
     public float range = 100f;
+    public bool gunon = true;
+    public ParticleSystem MuzzleFlash;
 
-    public Camera fpsCam; 
+
+    public Camera fpsCam;
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown ("Fire1"))
+        if (Input.GetButtonDown("Fire1") && gunon == true)
         {
-            Shoot();
+          
+          
+            {
+                Shoot();
+                MuzzleFlash.Play();
+             StartCoroutine(waiter());
+            }
+
         }
     }
-    void Shoot ()
+    IEnumerator waiter()
     {
-        RaycastHit hit; 
+        gunon = false;
+        yield return new WaitForSeconds(0.2f);
+        gunon = true;
+
+    }
+    void Shoot()
+    {
+        RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
         }
+
     }
 }
