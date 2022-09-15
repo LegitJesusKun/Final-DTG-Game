@@ -126,6 +126,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &321184019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321184020}
+  m_Layer: 0
+  m_Name: ThrowAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &321184020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321184019}
+  m_LocalRotation: {x: -0, y: 0.6456144, z: -0, w: -0.7636636}
+  m_LocalPosition: {x: 0.022, y: 0.026000023, z: 0.438}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1275211661}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 279.576, z: 0}
 --- !u!1 &395644866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4724544863606683765, guid: 04de0ee90ea561d4db31520ec24add8c,
@@ -152,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
+  gunon: 1
   MuzzleFlash: {fileID: 1471966790}
   fpsCam: {fileID: 1275211665}
 --- !u!1 &542508511
@@ -645,7 +677,7 @@ Transform:
   m_Children:
   - {fileID: 395644867}
   m_Father: {fileID: 1275211661}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &643325001
 MonoBehaviour:
@@ -6119,6 +6151,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1538781215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+    type: 3}
+  m_PrefabInstance: {fileID: 5393215579111688471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1600083680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3560789747647011286, guid: 04de0ee90ea561d4db31520ec24add8c,
@@ -6333,7 +6371,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1538781215}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -6803,7 +6841,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1538781215}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e087ecce43ebbff45a1b360637807d93, type: 3}
@@ -6815,6 +6853,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &135756641613574980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538781215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4032bd49cabe43b54c172c506435b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1275211661}
+  attackPoint: {fileID: 321184020}
+  ThrowingKnife: {fileID: 9129198114260089334, guid: d694b005373ba7446a231f1b56aecdc1,
+    type: 3}
+  totalThrows: 15
+  throwCooldown: 0.1
+  throwKey: 101
+  throwForce: 70
+  throwUpwardForce: 0
 --- !u!1 &2114283753834967212
 GameObject:
   m_ObjectHideFlags: 0
