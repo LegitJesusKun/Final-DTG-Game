@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
+
 public class Knife : MonoBehaviour
 {
+
     [Header("References")]
     public Transform cam;
     public Transform attackPoint;
     public GameObject ThrowingKnife;
+    public float damage = 10f;
+    public Camera fpsCam;
 
     [Header("Settings")]
     public int totalThrows;
@@ -21,15 +26,15 @@ public class Knife : MonoBehaviour
     bool readyToThrow;
 
     // Start is called before the first frame update
-    private  void Start()
+    private void Start()
     {
-        readyToThrow = true; 
+        readyToThrow = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
         {
             Throw();
         }
@@ -45,21 +50,35 @@ public class Knife : MonoBehaviour
         //gets rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-       
-            
-        //add force
-        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
 
-        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+        //Raycast to act like a wepaon
 
-        totalThrows--;
+        RaycastHit hit;
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
+        {
+            Debug.Log(hit.transform.name);
 
-        //implement throwCooldown
-        Invoke(nameof(ResetThrow), throwCooldown);
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
+
+            //add force
+            Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
+
+            projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+            totalThrows--;
+
+            //implement throwCooldown
+            ResetThrow();
+        }
+
+       void ResetThrow()
+        {
+            readyToThrow = true;
+        }
+
     }
-
-    private void ResetThrow()
-    {
-        readyToThrow = true;
-    }
-}
+} 
